@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29609.76
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityFrameworkCore", "EntityFrameworkCore\EntityFrameworkCore.csproj", "{7F4DB3D7-BD30-45A5-A37E-20176060E7D9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EntityFrameworkCore", "EntityFrameworkCore\EntityFrameworkCore.csproj", "{7F4DB3D7-BD30-45A5-A37E-20176060E7D9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Persistence.Database", "Persistence.Database\Persistence.Database.csproj", "{F9EBE354-F0CF-4F85-9B89-7BC77DC2AA88}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Persistence.Database", "Persistence.Database\Persistence.Database.csproj", "{F9EBE354-F0CF-4F85-9B89-7BC77DC2AA88}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "Services\Services.csproj", "{ECE8C9A1-0D4B-4C6E-8575-F1E46396C479}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{F9EBE354-F0CF-4F85-9B89-7BC77DC2AA88}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F9EBE354-F0CF-4F85-9B89-7BC77DC2AA88}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F9EBE354-F0CF-4F85-9B89-7BC77DC2AA88}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ECE8C9A1-0D4B-4C6E-8575-F1E46396C479}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ECE8C9A1-0D4B-4C6E-8575-F1E46396C479}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ECE8C9A1-0D4B-4C6E-8575-F1E46396C479}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ECE8C9A1-0D4B-4C6E-8575-F1E46396C479}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
