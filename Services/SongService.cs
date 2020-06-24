@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Persistence.Database;
 using Persistence.Database.Models;
+using Services.Dto;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -25,6 +26,22 @@ namespace Services
         public List<Song> GetAll()
         {
             return _context.Songs.Include(s => s.Album).ToList();
+        }
+
+        public List<SongDto> GetAllDto()
+        {
+            return _context.Songs
+                .Include(s => s.Album)
+                .ThenInclude(a => a.Author)
+                .Select(s => new SongDto
+                {
+                    Album = s.Album.Title,
+                    Author = s.Album.Author.Name,
+                    Duration = s.Duration,
+                    Name = s.Title,
+                    SongId = s.Id
+                })
+                .ToList();
         }
 
         public Song GetById(int id)

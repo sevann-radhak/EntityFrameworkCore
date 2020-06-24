@@ -11,7 +11,7 @@ namespace Persistence.Database.Models
         public int AuthorId { get; set; }
         public ICollection<Song> Songs { get; set; }
         public DateTime? PublishedAt { get; set; }
-        //public int TotalSongs { get; set; }
+        public int TotalSongs { get; set; }
         public bool Deleted { get; set; }
     }
 }

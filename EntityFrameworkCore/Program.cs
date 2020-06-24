@@ -1,18 +1,22 @@
 ﻿using Persistence.Database;
 using Persistence.Database.Models;
 using Services;
+using Services.Dto;
 using System;
+using System.Collections.Generic;
 
 namespace EntityFrameworkCore
 {
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             //Console.WriteLine("Hello World!");
 
             //FirstExample();
-            SecondExample();
+            //SecondExample();
+            //ThirdExample();
+            FourthExample();
         }
 
         private static void FirstExample()
@@ -42,12 +46,27 @@ namespace EntityFrameworkCore
             });
 
             Song edited = UpdateSong(1);
-            bool flag = true;
+        }
+
+        // Dto
+        private static void ThirdExample()
+        {
+            List<SongDto> songs = GetAllSongsDto();
+        }
+
+        // Stored procedure
+        private static void FourthExample()
+        {
+            using (ApplicationDbContext context = new ApplicationDbContext())
+            {
+                AlbumService albumService = new AlbumService(context);
+                albumService.SetTotalSongs(1);
+            }
         }
 
         private static void AddSong(Album album)
         {
-            using (var context = new ApplicationDbContext())
+            using (ApplicationDbContext context = new ApplicationDbContext())
             {
                 SongService songService = new SongService(context);
                 songService.Create(new Song
@@ -62,14 +81,14 @@ namespace EntityFrameworkCore
 
         private static Album CheckAlbum(Author author)
         {
-            using (var context = new ApplicationDbContext())
+            using (ApplicationDbContext context = new ApplicationDbContext())
             {
                 AlbumService albumService = new AlbumService(context);
 
                 return !albumService.Any()
-                    ? albumService.Create(new Album 
-                    { 
-                        AuthorId = author.Id, 
+                    ? albumService.Create(new Album
+                    {
+                        AuthorId = author.Id,
                         Title = "First Song"
                     })
                     : albumService.FirstOrDefault();
@@ -78,7 +97,7 @@ namespace EntityFrameworkCore
 
         private static Author CheckAuthor()
         {
-            using (var context = new ApplicationDbContext())
+            using (ApplicationDbContext context = new ApplicationDbContext())
             {
                 AuthorService authorService = new AuthorService(context);
 
@@ -90,7 +109,7 @@ namespace EntityFrameworkCore
 
         private static Album CreateAlbum(Album album)
         {
-            using (var context = new ApplicationDbContext())
+            using (ApplicationDbContext context = new ApplicationDbContext())
             {
                 AlbumService albumService = new AlbumService(context);
 
@@ -100,7 +119,7 @@ namespace EntityFrameworkCore
 
         private static Author CreateAuthor(Author author)
         {
-            using (var context = new ApplicationDbContext())
+            using (ApplicationDbContext context = new ApplicationDbContext())
             {
                 AuthorService authorService = new AuthorService(context);
 
@@ -110,16 +129,25 @@ namespace EntityFrameworkCore
 
         private static Song CreateSong(Song song)
         {
-            using (var context = new ApplicationDbContext())
+            using (ApplicationDbContext context = new ApplicationDbContext())
             {
                 SongService songService = new SongService(context);
                 return songService.Create(song);
             }
         }
 
+        private static List<SongDto> GetAllSongsDto()
+        {
+            using (ApplicationDbContext context = new ApplicationDbContext())
+            {
+                SongService songService = new SongService(context);
+                return songService.GetAllDto();
+            }
+        }
+
         private static Song GetSong(int id)
         {
-            using (var context = new ApplicationDbContext())
+            using (ApplicationDbContext context = new ApplicationDbContext())
             {
                 SongService songService = new SongService(context);
                 return songService.GetById(id);
@@ -128,10 +156,10 @@ namespace EntityFrameworkCore
 
         private static Song UpdateSong(int id)
         {
-            using (var context = new ApplicationDbContext())
+            using (ApplicationDbContext context = new ApplicationDbContext())
             {
                 SongService songService = new SongService(context);
-                var originalEntry = songService.GetById(id);
+                Song originalEntry = songService.GetById(id);
                 originalEntry.Title += " Edited";
 
                 return songService.Update(originalEntry);
