@@ -9,7 +9,7 @@ namespace Persistence.Database.Configuration
         {
             entityBuilder.HasKey(x => x.Id);
             entityBuilder.Property(x => x.Name).HasMaxLength(50).IsRequired();
-            //entityBuilder.Property(x => x.AboutMe).HasMaxLength(500);
+            entityBuilder.Property(x => x.AboutMe).HasMaxLength(500);
         }
     }
 }

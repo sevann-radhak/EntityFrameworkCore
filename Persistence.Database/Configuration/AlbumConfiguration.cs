@@ -9,7 +9,7 @@ namespace Persistence.Database.Configuration
         {
             entityBuilder.HasKey(x => x.Id);
             entityBuilder.Property(x => x.Title).HasMaxLength(50).IsRequired();
-            //entityBuilder.HasQueryFilter(x => !x.Deleted);
+            entityBuilder.HasQueryFilter(x => !x.Deleted);
         }
     }
 }

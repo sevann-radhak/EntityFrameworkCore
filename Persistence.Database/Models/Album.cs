@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Persistence.Database.Models
 {
@@ -9,9 +10,8 @@ namespace Persistence.Database.Models
         public Author Author { get; set; }
         public int AuthorId { get; set; }
         public ICollection<Song> Songs { get; set; }
-
-        //public DateTime? PublishedAt { get; set; }
+        public DateTime? PublishedAt { get; set; }
         //public int TotalSongs { get; set; }
-        //public bool Deleted { get; set; }
+        public bool Deleted { get; set; }
     }
 }
